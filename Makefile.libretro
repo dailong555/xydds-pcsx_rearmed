@@ -78,6 +78,9 @@ else ifeq ($(platform), qnx)
 else ifeq ($(platform), miyoo)
 	CC = /opt/miyoo/usr/bin/arm-linux-gcc
 	CXX = /opt/miyoo/usr/bin/arm-linux-g++
+else ifeq ($(platform), xydds)
+	CC = /opt/xydds/usr/bin/arm-linux-gcc
+	CXX = /opt/xydds/usr/bin/arm-linux-g++
 endif
 CC_AS ?= $(CC)
 
@@ -560,6 +563,16 @@ else ifeq ($(platform), miyoo)
 	fpic := -fPIC
 	CFLAGS += -mcpu=arm926ej-s -fsingle-precision-constant
 	CFLAGS += -DGPU_UNAI_USE_INT_DIV_MULTINV -D_MIYOO
+	ARCH = arm
+	BUILTIN_GPU = unai
+	DYNAREC = ari64
+	HAVE_NEON = 0
+
+else ifeq ($(platform), xydds)
+	TARGET := $(TARGET_NAME)_libretro.so
+	fpic := -fPIC
+	CFLAGS += -marm -mfpu=neon-vfpv4 -mfloat-abi=hard -fsingle-precision-constant
+	CFLAGS += -DGPU_UNAI_USE_INT_DIV_MULTINV -D_MIYOO -DARM -mcpu=cortex-a7
 	ARCH = arm
 	BUILTIN_GPU = unai
 	DYNAREC = ari64
