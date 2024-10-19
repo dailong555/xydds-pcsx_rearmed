@@ -564,7 +564,7 @@ else ifeq ($(platform), miyoo)
 	CFLAGS += -mcpu=arm926ej-s -fsingle-precision-constant
 	CFLAGS += -DGPU_UNAI_USE_INT_DIV_MULTINV -D_MIYOO
 	ARCH = arm
-	BUILTIN_GPU = unai
+	BUILTIN_GPU = unai_old
 	DYNAREC = ari64
 	HAVE_NEON = 0
 

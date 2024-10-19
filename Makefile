@@ -9,7 +9,7 @@ else
 ifeq ($(platform), $(filter $(platform), vita ctr))
 CFLAGS += -O3 -DNDEBUG
 else
-CFLAGS += -O2 -DNDEBUG
+CFLAGS += -O3 -DNDEBUG
 endif
 endif
 ifeq ($(DEBUG_ASAN), 1)
@@ -234,20 +234,20 @@ CFLAGS += -DTHREAD_RENDERING
 OBJS += plugins/gpulib/gpulib_thread_if.o
 endif
 endif
-ifeq "$(BUILTIN_GPU)" "unai"
+ifeq "$(BUILTIN_GPU)" "unai_old"
 CFLAGS += -DGPU_UNAI
 CFLAGS += -DUSE_GPULIB=1
 #CFLAGS += -DINLINE="static __inline__"
 #CFLAGS += -Dasm="__asm__ __volatile__"
-OBJS += plugins/gpu_unai/gpulib_if.o
+OBJS += plugins/gpu_unai_old/gpulib_if.o
 ifeq "$(ARCH)" "arm"
-OBJS += plugins/gpu_unai/gpu_arm.o
+OBJS += plugins/gpu_unai_old/gpu_arm.o
 endif
 ifeq "$(THREAD_RENDERING)" "1"
 CFLAGS += -DTHREAD_RENDERING
 OBJS += plugins/gpulib/gpulib_thread_if.o
 endif
-plugins/gpu_unai/gpulib_if.o: CFLAGS += -DREARMED -O3 
+plugins/gpu_unai_old/gpulib_if.o: CFLAGS += -DREARMED -Ofast
 CC_LINK = $(CXX)
 endif
 
