@@ -580,7 +580,7 @@ else ifeq ($(platform), miyoo)
 
 else ifeq ($(platform), xydds)
 	TARGET := $(TARGET_NAME)_libretro.so
-	fpic := -fno-PIC
+	fpic := -fPIC
 	CFLAGS += -marm -mfpu=neon-vfpv4 -mfloat-abi=hard -fsingle-precision-constant -Ofast -fdata-sections -ffunction-sections -fsingle-precision-constant
 	CFLAGS += -DGPU_UNAI_USE_INT_DIV_MULTINV -D_MIYOO -DARM -mcpu=cortex-a7
 	CFLAGS += -flto=auto -fno-common -fno-ipa-cp -fno-caller-saves -fno-regmove -finline-limit=42 \
